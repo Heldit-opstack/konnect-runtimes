@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 KONNECT_RUNTIME_PORT=80
-KONNECT_API_URL=
+KONNECT_API_URL="https://api-access.oppstack.xyz"
 KONNECT_USERNAME=
 KONNECT_PASSWORD=
 KONNECT_RUNTIME_REPO=
@@ -278,7 +278,7 @@ run_kong() {
         -e "KONG_LUA_SSL_TRUSTED_CERTIFICATE=system,/config/ca_cert.crt" \
         -e "KONG_LUA_SSL_VERIFY_DEPTH=3" \
         --mount type=bind,source="$(pwd)",target=/config,readonly \
-        -p "$KONNECT_RUNTIME_PORT":8000 \
+        -p "$KONNECT_RUNTIME_PORT":80 \
         "$KONNECT_RUNTIME_REPO"/"$KONNECT_RUNTIME_IMAGE"
 
     if [[ $? -gt 0 ]]; then
